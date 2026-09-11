@@ -1,0 +1,1951 @@
+{
+  "name": "Cardio IA-action",
+  "type": "action",
+  "counts": {
+    "actions": 7,
+    "intents": 4,
+    "entities": 5,
+    "data_types": 0,
+    "collections": 0,
+    "global_variables": 0
+  },
+  "status": "Available",
+  "language": "pt-br",
+  "skill_id": "d3d68090-836b-4f65-8ac6-7b4d1aad6b0b",
+  "workspace": {
+    "actions": [
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "digression_failure",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Não consegui entender se você deseja retornar ao assunto anterior. Você pode tentar novamente ou informar o que está sentindo, por exemplo: “Estou com dor no peito”, “Estou com palpitação” ou “Estou com falta de ar”."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "digression_failure",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Failed to confirm topic return"
+                }
+              ]
+            },
+            "next_step": "step_001"
+          },
+          {
+            "step": "step_001",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Não consegui compreender sua resposta. Tente responder novamente de forma mais clara ou informe o sintoma que está sentindo, como “dor no peito”, “palpitação” ou “falta de ar”."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "O CardioIA não possui atendimento por agente humano. Posso fornecer orientações iniciais sobre dor no peito, palpitação e falta de ar.\n\nSe você precisar de avaliação médica, procure um profissional ou serviço de saúde. Em caso de emergência, procure atendimento imediatamente ou ligue para o SAMU pelo 192."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Não consegui compreender completamente sua mensagem. Você pode explicar o que está sentindo de outra forma?\n\nPor exemplo: “Estou com dor no peito”, “Meu coração está acelerado” ou “Estou com falta de ar”.\n\n⚠️ Se você estiver apresentando sintomas intensos ou acreditar que está em uma situação de emergência, procure atendimento médico imediatamente ou ligue para o SAMU pelo 192."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            },
+            "next_step": "step_004"
+          },
+          {
+            "step": "step_004",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "⚠️ Identifiquei uma mensagem que pode indicar uma situação de risco. O CardioIA não consegue avaliar situações de emergência ou realizar diagnósticos.\n\nSe você estiver apresentando sintomas graves ou acreditar que sua saúde está em risco, procure atendimento médico imediatamente ou ligue para o SAMU pelo 192."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_004",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Danger word detected"
+                }
+              ]
+            },
+            "next_step": "step_005"
+          },
+          {
+            "step": "step_005",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Não consegui dar continuidade à conversa dessa forma. Posso ajudar com orientações iniciais sobre dor no peito, palpitação e falta de ar.\n\nPor favor, descreva o que você está sentindo para que eu possa orientá-lo."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_005",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Profanity detected"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "Não consegui entender se você deseja retornar ao assunto anterio",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "digression_failure",
+            "data_type": "any"
+          },
+          {
+            "title": "Não consegui compreender sua resposta. Tente responder novamente",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "O CardioIA não possui atendimento por agente humano. Posso forne",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "Não consegui compreender completamente sua mensagem. Você pode e",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_003",
+            "data_type": "any"
+          },
+          {
+            "title": "⚠️ Identifiquei uma mensagem que pode indicar uma situação de ri",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_004",
+            "data_type": "any"
+          },
+          {
+            "title": "Não consegui dar continuidade à conversa dessa forma. Posso ajud",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_005",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "run_always",
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_001",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "**Olá! Eu sou o CardioIA ❤️, seu assistente virtual de orientação em saúde cardiovascular. Posso ajudar com informações iniciais sobre sintomas, pressão arterial e exames cardiológicos. Como posso ajudar você hoje?**\n\n**Importante:** minhas orientações são informativas e não substituem avaliação, diagnóstico ou atendimento realizado por um profissional de saúde."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "title": "**Olá! Eu sou o CardioIA ❤️, seu assistente virtual de orientaçã",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_001",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_3521",
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_001",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Acho que não entendi. Reformule sua pergunta."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "policy": "default",
+                "parameters": null,
+                "result_variable": "step_002_result_1",
+                "ignore_end_action_steps": false
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "Receio não entender o que você está perguntando, por favor, refo",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "danger_word_detected",
+            "type": "standard",
+            "title": "Connect to agent",
+            "handlers": [],
+            "resolver": {
+              "type": "fallback"
+            },
+            "variable": "danger_word_detected_variable",
+            "condition": {
+              "entity": "danger_words"
+            },
+            "next_step": "profanity_detected"
+          },
+          {
+            "step": "profanity_detected",
+            "type": "standard",
+            "title": "Show warning",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Use o idioma apropriado ao interagir com o assistente."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "max_hits",
+                "handler": "max_hits_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "max_hits": 2,
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "profanity_detected_variable",
+            "condition": {
+              "entity": "profane_words"
+            }
+          }
+        ],
+        "title": "Trigger word detected",
+        "action": "run_always",
+        "boosts": [],
+        "handlers": [],
+        "variables": [
+          {
+            "title": "Profanity detected",
+            "variable": "danger_word_detected_variable",
+            "data_type": "any"
+          },
+          {
+            "title": "Profane word detected",
+            "variable": "profanity_detected_variable",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else"
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_219",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Entendi. A dor no peito pode ter diferentes causas e é importante avaliar alguns sinais associados. Para orientar você melhor, preciso fazer algumas perguntas.\n\nComo você classificaria a intensidade da sua dor?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Leve",
+                      "value": {
+                        "input": {
+                          "text": "Leve"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Moderada",
+                      "value": {
+                        "input": {
+                          "text": "Moderada"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Forte",
+                      "value": {
+                        "input": {
+                          "text": "Forte"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "Eu não entendi. Selecione uma opção válida:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_45320",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_219",
+            "next_step": "step_301"
+          },
+          {
+            "step": "step_301",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Você também está apresentando algum destes sinais de alerta: falta de ar, suor frio, tontura ou sensação de desmaio?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "Eu não entendi, reformule sua resposta."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_301",
+            "next_step": "step_703"
+          },
+          {
+            "step": "step_703",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "⚠️ **Atenção:** os sintomas relatados podem indicar uma situação que necessita de avaliação médica imediata. Procure um serviço de emergência ou ligue para o **SAMU pelo 192**."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_703",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_301"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_406"
+          },
+          {
+            "step": "step_406",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Entendi. Como você não relatou esses sinais de alerta, acompanhe a evolução dos sintomas. A dor no peito pode ter diferentes causas e deve ser avaliada por um profissional de saúde, principalmente se persistir, piorar ou voltar a acontecer.\n\nCaso surjam falta de ar, suor frio, tontura, desmaio ou piora importante da dor, procure atendimento médico imediatamente."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_406",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_301"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Dor no peito",
+        "action": "action_35107",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_35107_intent_49191"
+        },
+        "variables": [
+          {
+            "title": "Entendi. A dor no peito pode ter diferentes causas e é important",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_219",
+            "data_type": "any"
+          },
+          {
+            "title": "Você também está apresentando algum destes sinais de alerta: fal",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_301",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Entendi. Como você não relatou esses sinais de alerta, acompanhe",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_406",
+            "data_type": "any"
+          },
+          {
+            "title": "⚠️ **Atenção:** os sintomas relatados podem indicar uma situação",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_703",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_13559",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_532",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Entendi. Palpitações podem ser percebidas como coração acelerado, batimentos fortes ou irregulares. Para orientar você melhor, preciso verificar se existem outros sintomas associados.\n\nVocê está sentindo dor ou pressão no peito?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "Eu não entendi, reformule sua resposta."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_532",
+            "next_step": "step_463"
+          },
+          {
+            "step": "step_463",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Você também apresenta falta de ar intensa, tontura, desmaio ou sensação de que vai desmaiar?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "Eu não entendi, reformule sua resposta."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_463",
+            "next_step": "step_509"
+          },
+          {
+            "step": "step_509",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "⚠️ **Atenção:** palpitações associadas a dor ou pressão no peito, falta de ar intensa, tontura ou desmaio podem necessitar de avaliação médica imediata. Procure um serviço de emergência ou ligue para o **SAMU pelo 192**.\n\nO CardioIA fornece apenas orientações iniciais e não realiza diagnósticos nem substitui a avaliação de um profissional de saúde."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_509",
+            "condition": {
+              "or": [
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_532"
+                        },
+                        {
+                          "scalar": "yes"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_463"
+                        },
+                        {
+                          "scalar": "yes"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_756"
+          },
+          {
+            "step": "step_756",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Entendi. Como você não relatou sinais de alerta associados, acompanhe a evolução das palpitações. Elas podem ocorrer por diferentes motivos, como estresse, ansiedade, consumo de cafeína ou esforço físico.\n\nSe as palpitações forem frequentes, persistentes ou voltarem a acontecer, procure um profissional de saúde para avaliação.\n\nCaso surjam dor ou pressão no peito, falta de ar intensa,"
+                          },
+                          {
+                            "scalar": " tontura ou desmaio, procure atendimento médico imediatamente."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_756",
+            "condition": {
+              "or": [
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_532"
+                        },
+                        {
+                          "scalar": "no"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_463"
+                        },
+                        {
+                          "scalar": "no"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Palpitação",
+        "action": "action_13559",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_13559_intent_8452"
+        },
+        "variables": [
+          {
+            "title": "Você também apresenta falta de ar intensa, tontura, desmaio ou s",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_463",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "⚠️ **Atenção:** palpitações associadas a dor ou pressão no peito",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_509",
+            "data_type": "any"
+          },
+          {
+            "title": "Entendi. Palpitações podem ser percebidas como coração acelerado",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_532",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Entendi. Como você não relatou sinais de alerta associados, acom",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_756",
+            "data_type": "any"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "type": "standard",
+        "steps": [
+          {
+            "step": "step_409",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Entendi. A falta de ar pode ter diferentes causas e é importante observar sua intensidade e outros sintomas associados.\nComo você classificaria sua falta de ar neste momento?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Leve",
+                      "value": {
+                        "input": {
+                          "text": "Leve"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Moderada",
+                      "value": {
+                        "input": {
+                          "text": "Moderada"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Forte",
+                      "value": {
+                        "input": {
+                          "text": "Forte"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "Eu não entendi. Selecione uma opção válida:"
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_2858",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_409",
+            "next_step": "step_791"
+          },
+          {
+            "step": "step_791",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Você também apresenta dor ou pressão no peito, tontura, desmaio, confusão ou dificuldade intensa para respirar?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential",
+                  "repeat_on_reprompt": false
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Sim",
+                      "value": {
+                        "input": {
+                          "text": "Sim"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Não",
+                      "value": {
+                        "input": {
+                          "text": "Não"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text_expression": {
+                            "concat": [
+                              {
+                                "scalar": "Eu não entendi, reformule sua resposta."
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "response_type": "text",
+                      "selection_policy": "incremental"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_791",
+            "next_step": "step_256"
+          },
+          {
+            "step": "step_256",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "⚠️ **Atenção:** falta de ar intensa ou associada a sinais como dor ou pressão no peito, tontura, desmaio ou confusão pode necessitar de avaliação médica imediata. Procure um serviço de emergência ou ligue para o **SAMU pelo 192**.\n\nO CardioIA fornece apenas orientações iniciais e não realiza diagnósticos nem substitui a avaliação de um profissional de saúde."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_256",
+            "condition": {
+              "or": [
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_409"
+                        },
+                        {
+                          "value": "Forte",
+                          "from_entity": "entity_2858"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_791"
+                        },
+                        {
+                          "scalar": "yes"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_420"
+          },
+          {
+            "step": "step_420",
+            "type": "standard",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Entendi. Como você não relatou sinais de alerta neste momento, acompanhe a evolução da falta de ar e evite esforços físicos enquanto estiver com o sintoma.\n\nSe a falta de ar persistir, piorar ou acontecer com frequência, procure um profissional de saúde para avaliação. Caso surjam dor ou pressão no peito, tontura, desmaio, confusão ou dificuldade intensa para respirar,"
+                          },
+                          {
+                            "scalar": " procure atendimento médico imediatamente."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_420",
+            "condition": {
+              "or": [
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_409"
+                        },
+                        {
+                          "value": "Leve",
+                          "from_entity": "entity_2858"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_791"
+                        },
+                        {
+                          "scalar": "no"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "and": [
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_409"
+                        },
+                        {
+                          "value": "Moderada",
+                          "from_entity": "entity_2858"
+                        }
+                      ]
+                    },
+                    {
+                      "eq": [
+                        {
+                          "variable": "step_791"
+                        },
+                        {
+                          "scalar": "no"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Falta de Ar",
+        "action": "action_3521",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_3521_intent_3041"
+        },
+        "variables": [
+          {
+            "title": "⚠️ **Atenção:** falta de ar intensa ou associada a sinais como d",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_256",
+            "data_type": "any"
+          },
+          {
+            "title": "Entendi. A falta de ar pode ter diferentes causas e é importante",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_409",
+            "data_type": "any"
+          },
+          {
+            "title": "Entendi. Como você não relatou sinais de alerta neste momento, a",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_420",
+            "data_type": "any"
+          },
+          {
+            "title": "Você também apresenta dor ou pressão no peito, tontura, desmaio,",
+            "privacy": {
+              "enabled": false
+            },
+            "variable": "step_791",
+            "data_type": "yes_no"
+          }
+        ],
+        "launch_mode": "learning",
+        "next_action": "action_35107",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true,
+          "never_return": false
+        },
+        "disambiguation_opt_out": false
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_13559_intent_8452",
+        "examples": [
+          {
+            "text": "Palpitação"
+          },
+          {
+            "text": "Estou com o coração acelerado"
+          },
+          {
+            "text": "Meu coração está batendo estranho"
+          },
+          {
+            "text": "Estou sentindo palpitações"
+          },
+          {
+            "text": "Sinto meu coração disparar"
+          },
+          {
+            "text": "Meu coração está batendo forte"
+          },
+          {
+            "text": "Estou com os batimentos acelerados"
+          },
+          {
+            "text": "Estou sentindo meu coração bater muito rápido"
+          },
+          {
+            "text": "Meu coração está disparado"
+          },
+          {
+            "text": "Estou com palpitação"
+          },
+          {
+            "text": "Meu coração está acelerado"
+          }
+        ]
+      },
+      {
+        "intent": "action_3521_intent_3041",
+        "examples": [
+          {
+            "text": "Minha respiração está difícil"
+          },
+          {
+            "text": "Falta de Ar"
+          },
+          {
+            "text": "Estou com falta de ar"
+          },
+          {
+            "text": "Estou com dificuldade para respirar"
+          },
+          {
+            "text": "Está difícil respirar"
+          },
+          {
+            "text": "Estou respirando com dificuldade"
+          },
+          {
+            "text": "Estou ficando sem ar"
+          },
+          {
+            "text": "Estou com a respiração curta"
+          },
+          {
+            "text": "Estou ofegante"
+          }
+        ]
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "Eu quero contatar um agente/Eu quero entrar em contato com um agente"
+          },
+          {
+            "text": "Por favor, você pode entrar em contato comigo com um agente humano?"
+          },
+          {
+            "text": "Eu vou falar com um agente/ Eu vou falar com um agente de suporte."
+          },
+          {
+            "text": "Você pode me conectar com uma pessoa real?"
+          },
+          {
+            "text": "Preciso contatar a um atendente"
+          }
+        ],
+        "description": "Solicite um agente humano."
+      },
+      {
+        "intent": "action_35107_intent_49191",
+        "examples": [
+          {
+            "text": "Estou com um desconforto no peito"
+          },
+          {
+            "text": "Sinto um peso no peito"
+          },
+          {
+            "text": "Senti uma pontada no peito"
+          },
+          {
+            "text": "Estou com pressão no peito"
+          },
+          {
+            "text": "Estou sentindo um aperto no peito"
+          },
+          {
+            "text": "Meu peito está doendo"
+          },
+          {
+            "text": "Estou com dor no peito"
+          },
+          {
+            "text": "Dor no peito"
+          }
+        ]
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_2858",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Leve",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Forte",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Moderada",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "profane_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "sys-yes-no",
+        "values": []
+      },
+      {
+        "entity": "danger_words",
+        "values": [],
+        "fuzzy_match": false
+      },
+      {
+        "entity": "entity_45320",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Forte",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Moderada",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Leve",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      },
+      "skill": {
+        "counts": {
+          "actions": 7,
+          "intents": 4,
+          "entities": 5,
+          "data_types": 0,
+          "collections": 0,
+          "global_variables": 0
+        }
+      }
+    },
+    "variables": [],
+    "data_types": [],
+    "collections": [],
+    "counterexamples": [],
+    "system_settings": {
+      "variable": {
+        "format": {
+          "time": {
+            "pattern": "short"
+          },
+          "currency": {
+            "fraction_digits": 2
+          }
+        }
+      },
+      "auto_learn": {
+        "apply": true
+      },
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "enable_confirmation": true,
+          "confirmation_failure": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "Desculpe, não entendi, confirme, por favor."
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              }
+            ]
+          },
+          "confirmation_request": {
+            "generic": [
+              {
+                "values": [
+                  {
+                    "text_expression": {
+                      "concat": [
+                        {
+                          "scalar": "Deseja continuar com o tópico anterior: "
+                        },
+                        {
+                          "system_variable": "digressed_from"
+                        },
+                        {
+                          "scalar": "?"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "response_type": "text",
+                "selection_policy": "sequential"
+              },
+              {
+                "options": [
+                  {
+                    "label": "Sim",
+                    "value": {
+                      "input": {
+                        "text": "Sim"
+                      }
+                    }
+                  },
+                  {
+                    "label": "Não",
+                    "value": {
+                      "input": {
+                        "text": "Não"
+                      }
+                    }
+                  }
+                ],
+                "response_type": "option",
+                "repeat_on_reprompt": true
+              }
+            ]
+          }
+        },
+        "max_tries": 3
+      },
+      "disambiguation": {
+        "prompt": "Você quis dizer:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "Nenhum dos itens acima",
+        "use_connect_to_support_prompt": "conectar ao suporte",
+        "single_answer_clarification_prompt": "Outra coisa"
+      },
+      "search_routing": {
+        "target": "conversational_search"
+      }
+    },
+    "learning_opt_out": false,
+    "language": "pt-br"
+  },
+  "description": "created for assistant 8e8bb6f2-f46d-465e-ad41-0b0687a23a8c",
+  "dialog_settings": {
+    "source_assistant": "d5b7c6cc-a73c-44f4-8cf2-8b366e5c3878"
+  },
+  "created": "2026-09-11T21:56:54.507Z",
+  "updated": "2026-09-11T21:56:54.507Z",
+  "snapshot": "1",
+  "assistant_id": "8e8bb6f2-f46d-465e-ad41-0b0687a23a8c",
+  "assistant_references": [
+    {
+      "name": "Cardio IA",
+      "assistant_id": "d5b7c6cc-a73c-44f4-8cf2-8b366e5c3878",
+      "skill_reference": "actions skill"
+    }
+  ]
+}
