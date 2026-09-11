@@ -1,0 +1,4 @@
+Flask
+python-dotenv
+ibm-watson
+ibm-cloud-sdk-core

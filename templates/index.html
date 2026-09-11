@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CardioIA</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="avatar">
+            ❤️
+        </div>
+
+        <div class="header-text">
+            <h1>CardioIA</h1>
+            <p>Assistente Cardiológico Inteligente</p>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Online
+            </div>
+        </div>
+
+    </div>
+
+    <div class="aviso">
+        ⚠️ O CardioIA fornece orientações iniciais e não substitui
+        avaliação, diagnóstico ou atendimento realizado por um profissional de saúde.
+    </div>
+
+    <div id="chat" class="chat">
+
+        <div class="mensagem bot">
+            Olá! Eu sou o CardioIA ❤️
+
+            Posso ajudar com orientações iniciais sobre dor no peito,
+            palpitação e falta de ar.
+
+            Como posso ajudar você hoje?
+        </div>
+
+    </div>
+
+    <div class="formulario">
+
+        <input
+            type="text"
+            id="mensagem"
+            placeholder="Digite sua mensagem..."
+            autocomplete="off"
+        >
+
+        <button id="enviar">
+            Enviar
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const botao = document.getElementById("enviar");
+const campoMensagem = document.getElementById("mensagem");
+const chat = document.getElementById("chat");
+
+botao.addEventListener("click", enviarMensagem);
+
+campoMensagem.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        enviarMensagem();
+    }
+});
+
+async function enviarMensagem() {
+
+    const mensagem = campoMensagem.value.trim();
+
+    if (mensagem === "") {
+        return;
+    }
+
+    const mensagemUsuario = document.createElement("div");
+
+    mensagemUsuario.classList.add("mensagem", "usuario");
+    mensagemUsuario.textContent = mensagem;
+
+    chat.appendChild(mensagemUsuario);
+
+    campoMensagem.value = "";
+    chat.scrollTop = chat.scrollHeight;
+
+    try {
+
+        const resposta = await fetch("/chat", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                mensagem: mensagem
+            })
+
+        });
+
+        const dados = await resposta.json();
+
+        const mensagemBot = document.createElement("div");
+
+        mensagemBot.classList.add("mensagem", "bot");
+        mensagemBot.textContent = dados.resposta;
+
+        chat.appendChild(mensagemBot);
+
+        chat.scrollTop = chat.scrollHeight;
+
+    } catch (erro) {
+
+        const mensagemErro = document.createElement("div");
+
+        mensagemErro.classList.add("mensagem", "bot");
+
+        mensagemErro.textContent =
+            "Não foi possível conectar ao CardioIA. Tente novamente.";
+
+        chat.appendChild(mensagemErro);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
